@@ -3,10 +3,9 @@ create-venv:
 	#pyenv activate ableton-control-surface-osc-venv-3.7.13
 
 install-deps:
-	@pip install --upgrade pip
-	@pip install -r requirements.txt
+	@pip install --upgrade pip && pip install -r requirements.txt
 
-launch:
+launch-ableton:
 	@open /Applications/Ableton*12*
 
 kill:
@@ -19,6 +18,9 @@ tail-all:
 	@tail -n 50 -f ~/Library/Preferences/Ableton/*/Log.txt
 
 copy-controller-script:
+	@rm -rf ~/Music/Ableton"/User Library/Remote Scripts/fastosc"
+	@python copy_packages.py
+	@rm -rf ~/Music/Ableton"/User Library/Remote Scripts/fastosc/__pycache__"
 	@rm -rf ~/Music/Ableton"/User Library/Remote Scripts/AbletonControlSurfaceOSC"
 	@cp -r "AbletonControlSurfaceOSC" ~/Music/Ableton"/User Library/Remote Scripts"
 	@rm -rf ~/Music/Ableton"/User Library/Remote Scripts/AbletonControlSurfaceOSC/__pycache__"
@@ -33,11 +35,8 @@ lint:
 format:
 	@ruff format AbletonControlSurfaceOSC
 
-install-deps:
-	@pip install -r requirements.txt
+lint-format: lint-fix format lint
 
-restart-12: kill copy-controller-script launch12
-
-restart: restart-12
+restart: kill copy-controller-script launch-ableton
 
 build: lint-fix lint

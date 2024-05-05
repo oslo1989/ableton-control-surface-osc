@@ -2,10 +2,9 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
+import Live
 from fastosc.dispatcher import Dispatcher
 from fastosc.router import OSCRouter, osc_get
-
-import Live
 
 VERSION = "/version"
 AVERAGE_PROCESS_USAGE = "/avg_process_usage"
@@ -13,7 +12,7 @@ PEAK_PROCESS_USAGE = "/peak_process_usage"
 
 
 class LiveApplicationRouter(OSCRouter):
-    def __init__(self, *, dispatcher: Dispatcher, app: Live.Application.Application, namespace: str):
+    def __init__(self, *, dispatcher: Dispatcher, app: Live.Application.Application, namespace: str) -> None:
         dispatcher._logger.info("LiveApplicationRouter Init...")
         super().__init__(
             dispatcher=dispatcher,
@@ -44,7 +43,7 @@ class LiveApplicationRouter(OSCRouter):
         if address == AVERAGE_PROCESS_USAGE:
             self._app.add_average_process_usage_listener(listener)
             return lambda: self._app.remove_average_process_usage_listener(listener)
-        elif address == PEAK_PROCESS_USAGE:
+        if address == PEAK_PROCESS_USAGE:
             self._app.add_peak_process_usage_listener(listener)
             return lambda: self._app.remove_peak_process_usage_listener(listener)
         return None

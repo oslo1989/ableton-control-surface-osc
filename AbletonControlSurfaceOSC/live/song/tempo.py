@@ -2,17 +2,17 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
+import Live
 from fastosc.dispatcher import Dispatcher
 from fastosc.router import osc_get, osc_set
 
-import Live
 from AbletonControlSurfaceOSC.live import LiveBaseRouter
 
 TEMPO = "/tempo"
 
 
 class LiveTempoRouter(LiveBaseRouter):
-    def __init__(self, *, dispatcher: Dispatcher, song: Live.Song.Song, namespace: str):
+    def __init__(self, *, dispatcher: Dispatcher, song: Live.Song.Song, namespace: str) -> None:
         dispatcher._logger.info("LiveTempoRouter: Init...")
         super().__init__(dispatcher=dispatcher, song=song, namespace=namespace)
         self._logger = dispatcher._logger

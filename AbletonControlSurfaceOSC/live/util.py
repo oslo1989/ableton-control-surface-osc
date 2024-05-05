@@ -8,11 +8,9 @@ T = TypeVar("T", bound=object)
 
 
 def index_of(ls: list[T], obj: T) -> int:
-    idx = 0
-    for el in ls:
+    for idx, el in enumerate(ls):
         if el == obj:
             return idx
-        idx += 1
     return -1
 
 

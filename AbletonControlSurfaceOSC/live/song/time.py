@@ -1,22 +1,27 @@
 from __future__ import annotations
 
-import random
 from typing import Any, Callable
 
+import Live
 from fastosc.dispatcher import Dispatcher
 from fastosc.router import osc_get
 
-import Live
 from AbletonControlSurfaceOSC.live import LiveBaseRouter
 
 TIME = "/time"
 BEAT_WHOLE = "/beat/whole"
 BEAT_QUARTER = "/beat/quarter"
 BEAT_SIXTEENTH = "/beat/sixteenth"
+QUARTER = 0.25
+HALF = 0.5
+THREE_QUARTERS = 0.75
+FIRST_BEAT = 1
+SECOND_BEAT = 2
+THIRD_BEAT = 3
 
 
 class LiveTimeRouter(LiveBaseRouter):
-    def __init__(self, *, dispatcher: Dispatcher, song: Live.Song.Song, namespace: str):
+    def __init__(self, *, dispatcher: Dispatcher, song: Live.Song.Song, namespace: str) -> None:
         dispatcher._logger.info("LiveTimeRouter: Init...")
         super().__init__(dispatcher=dispatcher, song=song, namespace=namespace)
         self._logger = self._dispatcher._logger
@@ -62,13 +67,13 @@ class LiveTimeRouter(LiveBaseRouter):
         if address == TIME:
             self._song.add_current_song_time_listener(listener)
             return lambda: self._song.remove_tempo_listener(listener)
-        elif address == BEAT_SIXTEENTH:
+        if address == BEAT_SIXTEENTH:
             self._sixteenth_beat_listeners.append(listener)
             return lambda: self._sixteenth_beat_listeners.remove(listener)
-        elif address == BEAT_QUARTER:
+        if address == BEAT_QUARTER:
             self._quarter_beat_listeners.append(listener)
             return lambda: self._quarter_beat_listeners.remove(listener)
-        elif address == BEAT_WHOLE:
+        if address == BEAT_WHOLE:
             self._whole_beat_listeners.append(listener)
             return lambda: self._whole_beat_listeners.remove(listener)
         return None
@@ -90,13 +95,13 @@ class LiveTimeRouter(LiveBaseRouter):
             for listener in self._quarter_beat_listeners:
                 listener()
             self._trigger_sixteenth_listeners()
-        if self._song.current_song_time > 0.25 and self._sixteenth_beat == 1:
+        if self._song.current_song_time > QUARTER and self._sixteenth_beat == FIRST_BEAT:
             self._sixteenth_beat = 2
             self._trigger_sixteenth_listeners()
-        elif self._song.current_song_time > 0.5 and self._sixteenth_beat == 2:
+        elif self._song.current_song_time > HALF and self._sixteenth_beat == SECOND_BEAT:
             self._sixteenth_beat = 3
             self._trigger_sixteenth_listeners()
-        elif self._song.current_song_time > 0.75 and self._sixteenth_beat == 3:
+        elif self._song.current_song_time > THREE_QUARTERS and self._sixteenth_beat == THIRD_BEAT:
             self._sixteenth_beat = 4
             self._trigger_sixteenth_listeners()
 

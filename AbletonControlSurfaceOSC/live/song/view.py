@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
+import Live
 from fastosc.dispatcher import Dispatcher
 from fastosc.router import osc_get, osc_set
 
-import Live
 from AbletonControlSurfaceOSC.live import LiveBaseRouter
 from AbletonControlSurfaceOSC.live.util import MASTER_TRACK, RETURN_TRACK, TRACK, index_of, int_color_to_hex, map_track
 
@@ -33,7 +33,7 @@ APPOINTED_DEVICE = "/appointed_device"
 
 
 class LiveViewRouter(LiveBaseRouter):
-    def __init__(self, *, dispatcher: Dispatcher, song: Live.Song.Song, namespace: str):
+    def __init__(self, *, dispatcher: Dispatcher, song: Live.Song.Song, namespace: str) -> None:
         dispatcher._logger.info("LiveViewRouter: Init...")
         super().__init__(dispatcher=dispatcher, song=song, namespace=namespace)
         self._logger = dispatcher._logger

@@ -1,9 +1,8 @@
 from __future__ import annotations
 
+import Live
 from fastosc.dispatcher import Dispatcher
 from fastosc.router import OSCRouter
-
-import Live
 
 
 class LiveBaseRouter(OSCRouter):
@@ -17,7 +16,7 @@ class LiveBaseRouter(OSCRouter):
         song: Live.Song.Song,
         sub_routers: list[type[LiveBaseRouter]] | None = None,
         namespace: str,
-    ):
+    ) -> None:
         super().__init__(dispatcher=dispatcher, namespace=namespace)
         self._song = song
         for router_cls in sub_routers or []:

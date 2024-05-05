@@ -1,4 +1,12 @@
-launch12:
+create-venv:
+	@pyenv virtualenv 3.7.13 ableton-control-surface-osc-venv-3.7.13
+	#pyenv activate ableton-control-surface-osc-venv-3.7.13
+
+install-deps:
+	@pip install --upgrade pip
+	@pip install -r requirements.txt
+
+launch:
 	@open /Applications/Ableton*12*
 
 kill:

@@ -40,7 +40,3 @@ def map_track(t: Track, track_type: int) -> tuple[int, str, str, bool, bool, boo
         t.has_midi_input,
         t.has_midi_output,
     )
-
-
-def numbers(base: int, base_midi_channel: int, num_tracks: int) -> list[tuple[int, int, int]]:
-    return [(index, base_midi_channel + (index // 8), base + (index % 8)) for index in range(num_tracks)]

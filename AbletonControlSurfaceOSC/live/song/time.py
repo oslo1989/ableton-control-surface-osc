@@ -7,7 +7,7 @@ from fastosc.dispatcher import Dispatcher
 from fastosc.router import osc_get
 
 import Live
-from EnablerOSCSurface.live import LiveBaseRouter
+from AbletonControlSurfaceOSC.live import LiveBaseRouter
 
 TIME = "/time"
 BEAT_WHOLE = "/beat/whole"

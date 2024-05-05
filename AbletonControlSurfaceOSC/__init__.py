@@ -2,6 +2,6 @@ from typing import Any
 
 
 def create_instance(c_instance: Any) -> Any:
-    from .control_surface import EnablerOSCSurface
+    from .control_surface import AbletonControlSurfaceOSC
 
-    return EnablerOSCSurface(c_instance)
+    return AbletonControlSurfaceOSC(c_instance)

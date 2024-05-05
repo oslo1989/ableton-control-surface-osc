@@ -6,7 +6,7 @@ from fastosc.dispatcher import Dispatcher
 from fastosc.router import osc_get, osc_set
 
 import Live
-from EnablerOSCSurface.live import LiveBaseRouter
+from AbletonControlSurfaceOSC.live import LiveBaseRouter
 
 TEMPO = "/tempo"
 

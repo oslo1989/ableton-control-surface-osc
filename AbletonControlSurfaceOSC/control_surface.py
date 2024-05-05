@@ -7,52 +7,19 @@ from fastosc.server.udp.udp_pull_server import OSCUDPPullServer
 
 import Live
 from ableton.v2.control_surface import ControlSurface
-from EnablerOSCSurface.live.application import LiveApplicationRouter
-from EnablerOSCSurface.live.song import LiveSongRouter
-from EnablerOSCSurface.log import logger
+from AbletonControlSurfaceOSC.live.application import LiveApplicationRouter
+from AbletonControlSurfaceOSC.live.song import LiveSongRouter
+from AbletonControlSurfaceOSC.log import logger
 
 MIN_TIMER_INTERVAL_MS = 10
 MILLISECONDS_PER_SECOND = 1000
-
-"""
-todo: need to have a request id that is associated with the response.
-if ther server can append it, that would be the best
-
-callback id
-
-# format of messages
-# parameters: Tuple, Signature: Tuple[timestamp, request_id] -> returned on GET requests
-# have separate update messages for change -> what changed, like a track was moved etc.
-# a scene was moved, a device was moved
-# we could do a get to the callback dict, get the function, then replace the function with a new one
-# corresponding to the new address parameters. but is the function already scoped to the old address / parameters?
-
-If an handler now returns
-
-we do [data... NIL timestamp request_id]   returned on GET requests, easy
-               None   datetime   str
-
-  have a utility to process this
-
-TODO:
-- create library / package / repo for doc generated code surface
-- create library / package / repo  for live11 reverse engineered code
-- create library / package / repo  for live12 reverse engineered code
-- create library / package / repo  for osc code
-- create repo for osc control surface
-- https://docs.python.org/3/library/unittest.mock.html#unittest.mock.MagicMock
-- testing using dispatcher. no need for server
-- test fastosc - hommage to FastAPI
-- Automatic validation of types
-- Automatic docs generation of types and return types
-"""
 
 BASE_ADDRESS = "/live"
 SONG_ADDRESS = "/song"
 APPLICATION_ADDRESS = "/app"
 
 
-class EnablerOSCSurface(ControlSurface):
+class AbletonControlSurfaceOSC(ControlSurface):
     _server_timer: Live.Base.Timer
     _local_addr = local_addr = ("0.0.0.0", 1337)
 

@@ -6,8 +6,8 @@ from fastosc.dispatcher import Dispatcher
 from fastosc.router import osc_get, osc_set
 
 import Live
-from EnablerOSCSurface.live import LiveBaseRouter
-from EnablerOSCSurface.live.util import MASTER_TRACK, RETURN_TRACK, TRACK, index_of, int_color_to_hex, map_track
+from AbletonControlSurfaceOSC.live import LiveBaseRouter
+from AbletonControlSurfaceOSC.live.util import MASTER_TRACK, RETURN_TRACK, TRACK, index_of, int_color_to_hex, map_track
 
 TRACKS = "/tracks"
 SELECTED_TRACK = "/selected_track"

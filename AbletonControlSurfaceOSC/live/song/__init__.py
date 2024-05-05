@@ -3,10 +3,10 @@ from __future__ import annotations
 from fastosc.dispatcher import Dispatcher
 
 import Live
-from EnablerOSCSurface.live import LiveBaseRouter
-from EnablerOSCSurface.live.song.tempo import LiveTempoRouter
-from EnablerOSCSurface.live.song.time import LiveTimeRouter
-from EnablerOSCSurface.live.song.view import LiveViewRouter
+from AbletonControlSurfaceOSC.live import LiveBaseRouter
+from AbletonControlSurfaceOSC.live.song.tempo import LiveTempoRouter
+from AbletonControlSurfaceOSC.live.song.time import LiveTimeRouter
+from AbletonControlSurfaceOSC.live.song.view import LiveViewRouter
 
 
 class LiveSongRouter(LiveBaseRouter):

@@ -8,4 +8,4 @@ logging.basicConfig(
     ],
 )
 
-logger = logging.getLogger("EnablerOSCSurface")
+logger = logging.getLogger("AbletonControlSurfaceOSC")

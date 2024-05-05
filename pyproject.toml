@@ -1,0 +1,21 @@
+[project]
+name = "ableton-control-surface-osc"
+version = "0.0.1"
+description = ""
+dynamic = ["dependencies"]
+requires-python=">=3.7"
+
+[tool.ruff]
+select = ["E", "F", "B", "W", "I" ,"UP", "ANN", "BLE", "FBT", "A", "COM", "C4", "DTZ", "PIE", "Q", "RET", "SIM", "PL", "RUF"]
+extend-select = ["I"]
+fixable = ["ALL"]
+line-length = 120
+target-version = "py37"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.mypy]
+ignore_missing_imports = true
+follow_imports = "silent"
+disallow_untyped_defs = true

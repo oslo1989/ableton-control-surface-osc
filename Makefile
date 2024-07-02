@@ -19,7 +19,7 @@ tail-all:
 
 copy-controller-script:
 	@rm -rf ~/Music/Ableton"/User Library/Remote Scripts/fastosc"
-	@python copy_packages.py
+	@python copy_libs.py
 	@rm -rf ~/Music/Ableton"/User Library/Remote Scripts/fastosc/__pycache__"
 	@rm -rf ~/Music/Ableton"/User Library/Remote Scripts/AbletonControlSurfaceOSC"
 	@cp -r "AbletonControlSurfaceOSC" ~/Music/Ableton"/User Library/Remote Scripts"

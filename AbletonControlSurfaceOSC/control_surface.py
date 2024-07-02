@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import os
+
 import Live
 from ableton.v2.control_surface import ControlSurface
 from fastosc.dispatcher import Dispatcher
@@ -27,7 +29,7 @@ class AbletonControlSurfaceOSC(ControlSurface):
         self._logger = logger
         self._dispatcher = Dispatcher(base_address=BASE_ADDRESS, logger=self._logger)
         self._server = OSCUDPPullServer(dispatcher=self._dispatcher, local_addr=self._local_addr, logger=self._logger)
-
+        self._logger.info(os.environ.get("OSC_SERVERS", "No servers"))
         self._server_timer = Live.Base.Timer(  # type: ignore[call-arg]
             callback=self._server.process,
             interval=MIN_TIMER_INTERVAL_MS,
